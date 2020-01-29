@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
-import { MatPaginator } from '@angular/material';
+import { Router } from "@angular/router";
+import { MatPaginator, PageEvent } from "@angular/material";
 import { FoodService } from "../food.service";
-import { FoodSearchResult } from '../food-search-result';
-import { Food } from '../food';
+import { FoodSearchResult } from "../food-search-result";
+import { Food } from "../food";
 
 @Component({
   selector: "food-search",
@@ -10,19 +11,43 @@ import { Food } from '../food';
   styleUrls: ["food-search.component.css"]
 })
 export class FoodSearchComponent implements OnInit {
-  constructor(private foodService: FoodService) {}
-  ngOnInit() {}
+  constructor(private foodService: FoodService, private router: Router) {}
+  ngOnInit() {
+    if (this.searchTerm) {
+      this.resetQueryParams();
+    }
+  }
 
   searchTerm: string;
   results: FoodSearchResult;
+  queryParams: Params = {
+    q: ""
+  };
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  columnsToDisplay = ['description', 'brandOwner', 'ingredients'];
+  handlePagination(event: PageEvent) {
+    this.foodService
+      .getPage(event, this.searchTerm)
+      .subscribe(this.handleResult);
+  }
+
+  columnsToDisplay = ["description", "brandOwner", "ingredients"];
+
+  resetQueryParams() {
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { q: this.searchTerm },
+      queryParamsHandling: "merge"
+    });
+  }
 
   doSearch() {
-    this.foodService.find(this.searchTerm).subscribe(
-      (data: FoodSearchResult) =>
-        (this.results = data)
-    );
+    this.foodService.find(this.searchTerm).subscribe(this.handleResult);
+    this.resetQueryParams();
+  }
+
+  handleResult(data: FoodSearchResult) {
+    this.results = data;
+    console.log("results", this.results);
   }
 }

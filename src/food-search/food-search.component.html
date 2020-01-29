@@ -1,8 +1,8 @@
 <div>
-  <nav>
-  <a routerLink="/" routerLinkActive="active">Home</a>
-  </nav>
- 	<h1>Food search</h1>
+	<nav>
+		<a routerLink="/" routerLinkActive="active">Home</a>
+	</nav>
+	<h2>Food search</h2>
 	<form class="example-form">
 		<mat-form-field class="example-full-width">
 			<input matInput [(ngModel)]="searchTerm"
@@ -16,8 +16,9 @@
     {{results.totalPages}}
   </em>
 
-		<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [length]="results.totalHits"
-			[pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event"></mat-paginator>
+		<mat-paginator showFirstLastButtons [length]="results.totalHits"
+			[pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = handlePagination($event)">
+		</mat-paginator>
 		<table *ngIf="results.foods" mat-table [dataSource]="results.foods" class="mat-elevation-z8">
 			<ng-container matColumnDef="description">
 				<th mat-header-cell *matHeaderCellDef> Description </th>

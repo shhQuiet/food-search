@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { FoodSearchComponent } from "../food-search/food-search.component";
 import { FoodDetailComponent } from "../food-detail/food-detail.component";
 import { HomeComponent } from "../home/home.component";
+import { BannerComponent } from "../banner/banner.component";
 import { PageNotFoundComponent } from "../page-not-found/page-not-found.component";
 
 import { MaterialModule } from "./material-module";
@@ -32,7 +33,8 @@ const routes: Routes = [
     FoodSearchComponent,
     FoodDetailComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BannerComponent
   ],
   bootstrap: [AppComponent]
 })
