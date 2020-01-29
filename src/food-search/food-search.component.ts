@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { MatPaginator } from '@angular/material';
 import { FoodService } from "../food.service";
 import { FoodSearchResult } from '../food-search-result';
 import { Food } from '../food';
@@ -14,11 +15,11 @@ export class FoodSearchComponent implements OnInit {
 
   searchTerm: string;
   results: FoodSearchResult;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   columnsToDisplay = ['description', 'brandOwner', 'ingredients'];
 
   doSearch() {
-    console.log("Searching...");
     this.foodService.find(this.searchTerm).subscribe(
       (data: FoodSearchResult) =>
         (this.results = data)
