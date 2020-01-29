@@ -15,7 +15,7 @@ export class FoodSearchComponent implements OnInit {
   searchTerm: string;
   results: FoodSearchResult;
 
-  columnsToDisplay = ['description', 'brandOwner'];
+  columnsToDisplay = ['description', 'brandOwner', 'ingredients'];
 
   doSearch() {
     console.log("Searching...");
