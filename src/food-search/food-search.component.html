@@ -1,10 +1,11 @@
 <div class="food-search">
 	<h1>Food search</h1>
+  <em>From the US Dept. of Agriculture FoodData Central</em>
 	<form class="example-form">
 		<mat-form-field class="example-full-width">
 			<input matInput [(ngModel)]="searchTerm"
       name="searchTerm"
-      placeholder="Food name for search">
+      placeholder="Food name or brand for search">
     </mat-form-field>
 			<button (click)="doSearch()" mat-raised-button color="primary">Search</button>
 	</form>
