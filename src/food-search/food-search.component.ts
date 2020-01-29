@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { FoodService } from "../food.service";
 
 @Component({
@@ -9,8 +9,9 @@ import { FoodService } from "../food.service";
 
 export class FoodSearchComponent implements OnInit {
   constructor(private foodService: FoodService) {}
-  searchTerm = ''
   ngOnInit() {}
+
+  searchTerm: string
 
   doSearch() {
     console.log("Searching...");
