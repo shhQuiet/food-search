@@ -1,9 +1,11 @@
 <div class="food-search">
-  <em>Food search!</em>
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Favorite food" value="Sushi">
-  </mat-form-field>
-
-</form>
+	<em>Food search!</em>
+	<form class="example-form">
+		<mat-form-field class="example-full-width">
+			<input matInput [(ngModel)]="searchTerm" 
+      name="searchTerm"
+      placeholder="Food name for search">
+    </mat-form-field>
+    <button (click)="doSearch()" mat-raised-button color="primary">Search</button>
+	</form>
 </div>
