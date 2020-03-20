@@ -29,7 +29,6 @@ export class FoodSearchComponent implements OnInit {
     this.foodService
       .getPage(event, this.searchTerm)
       .subscribe(data => {
-        debugger;
         this.results = data;
         console.log("results", this.results);
       });
@@ -47,7 +46,6 @@ export class FoodSearchComponent implements OnInit {
 
   doSearch() {
     this.foodService.find(this.searchTerm).subscribe(data => {
-        debugger;
         this.results = data;
         console.log("results", this.results);
       });
