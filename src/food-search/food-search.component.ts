@@ -28,7 +28,11 @@ export class FoodSearchComponent implements OnInit {
   handlePagination(event: PageEvent) {
     this.foodService
       .getPage(event, this.searchTerm)
-      .subscribe(this.handleResult);
+      .subscribe(data => {
+        debugger;
+        this.results = data;
+        console.log("results", this.results);
+      });
   }
 
   columnsToDisplay = ["description", "brandOwner", "ingredients"];
@@ -42,12 +46,14 @@ export class FoodSearchComponent implements OnInit {
   }
 
   doSearch() {
-    this.foodService.find(this.searchTerm).subscribe(this.handleResult);
+    this.foodService.find(this.searchTerm).subscribe(data => {
+        debugger;
+        this.results = data;
+        console.log("results", this.results);
+      });
     this.resetQueryParams();
   }
 
   handleResult(data: FoodSearchResult) {
-    this.results = data;
-    console.log("results", this.results);
   }
 }
