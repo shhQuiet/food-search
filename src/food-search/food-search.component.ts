@@ -13,6 +13,7 @@ import { Food } from "../food";
 export class FoodSearchComponent implements OnInit {
   constructor(private foodService: FoodService, private router: Router) {}
   ngOnInit() {
+    debugger;
     if (this.searchTerm) {
       this.resetQueryParams();
     }
